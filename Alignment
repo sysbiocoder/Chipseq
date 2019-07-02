@@ -1,0 +1,3 @@
+bwa aln $dbase/hg19 <(zcat $infolder/infile.fq.gz) > $outfolder/outfile.sai
+bwa samse  $dbase/hg19 $outfolder/outfile.sai <(zcat $infolder/infile.fq.gz) > $outfolder/outfile.sam
+samtools view -bSq 20  $outfolder/outfile.sam | samtools sort -o $outfolder/outfile_sorted.bam
