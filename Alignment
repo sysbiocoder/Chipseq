@@ -1,3 +1,13 @@
+Bowtie or BWA are better options for alignment
+Bowtie2 is used usually when read lengths are more than 50bp
+The major parameters to take note while aligning ChiP seq is -k mode: search for one or more alignments, report each and -N for allowing number of mismatches
+assign -k as 1 and N as 1
+For paired end sequencing alignment with Bowtie2
+
+bowtie2 -p 14 -k 1 -N 1 -x $db/bowtie_idx/hg38.p13 -1 $dir/${infile}_1.fastq.gz -2 $dir/${infile}_2.fastq.gz | samtools view -bS -  > $outfolder/$infile.bam 
+
+For single end sequencing with BWA
+
 bwa aln $dbase/hg19 <(zcat $infolder/infile.fq.gz) > $outfolder/outfile.sai
 bwa samse  $dbase/hg19 $outfolder/outfile.sai <(zcat $infolder/infile.fq.gz) > $outfolder/outfile.sam
 samtools view -bSq 20  $outfolder/outfile.sam | samtools sort -o $outfolder/outfile_sorted.bam
